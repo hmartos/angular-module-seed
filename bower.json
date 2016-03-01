@@ -1,0 +1,10 @@
+{
+  "name": "angular-module-seed",
+  "version": "1.0.0",
+  "license": "MIT",
+  "description": "Seed project to use as starting point to create angular modules",
+  "main": "app.js",
+  "dependencies": {
+    "angular": ">=1.2.0"
+  }
+}
