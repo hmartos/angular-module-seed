@@ -18,14 +18,14 @@ gulp.task('templates', function () {
     .pipe(gulp.dest(dist));
 });
 
-//Generates nfq-loader.js
+//Generates my-module.js
 gulp.task('concat-js', ['templates'], function () {
   	gulp.src(['src/js/**/*.js', dist + '/' + jsFile])
   	.pipe(concat(jsFile))
   	.pipe(gulp.dest(dist))
 });
 
-//Generates nfq-loader.min.js
+//Generates my-module.min.js
 gulp.task('concat-uglify-js', ['templates'], function () {
   	gulp.src(['src/js/**/*.js', dist + '/' + jsFile])
   	.pipe(concat(minJsFile))
@@ -33,7 +33,7 @@ gulp.task('concat-uglify-js', ['templates'], function () {
   	.pipe(gulp.dest(dist))
 });
 
-//Generates nfq-loader.min.css
+//Generates my-module.min.css
 gulp.task('minify-css', function() {
   return gulp.src('src/css/*.css')
     .pipe(minifyCss({compatibility: 'ie8'}))
