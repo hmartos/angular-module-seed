@@ -41,5 +41,10 @@ gulp.task('minify-css', function() {
     .pipe(gulp.dest(dist));
 });
 
+//Configure watch to execute build task on source changes
+gulp.task('watch', function() {
+    gulp.watch('src/**', ['build']);
+});
+
 gulp.task('default', ['concat-js', 'concat-uglify-js', 'minify-css']);
 gulp.task('build', ['default']);
