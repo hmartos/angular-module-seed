@@ -2,14 +2,24 @@
 var gulp = require('gulp');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
-var minifyCss = require('gulp-minify-css');
+var cleanCSS = require('gulp-clean-css');
 var templateCache = require('gulp-angular-templatecache');
+var jshint = require('gulp-jshint');
+var jsReporter = require('jshint-stylish');
 
 //Vars
 var dist = 'dist';
 var jsFile = 'my-module.js';
 var minJsFile = 'my-module.min.js';
 var minCssFile = 'my-module.min.css';
+
+//Lint
+gulp.task('lint', function() {
+  return gulp.src('src/**/*.js')
+      .pipe(jshint('.jshintrc'))
+      .pipe(jshint.reporter(jsReporter, {beep: true}))
+      .pipe(jshint.reporter('fail'));
+});
 
 //Generates templates
 gulp.task('templates', function () {
@@ -36,7 +46,7 @@ gulp.task('concat-uglify-js', ['templates'], function () {
 //Generates my-module.min.css
 gulp.task('minify-css', function() {
   return gulp.src('src/css/*.css')
-    .pipe(minifyCss({compatibility: 'ie8'}))
+    .pipe(cleanCSS({compatibility: 'ie8'}))
     .pipe(concat(minCssFile))
     .pipe(gulp.dest(dist));
 });
@@ -46,5 +56,5 @@ gulp.task('watch', function() {
     gulp.watch('src/**', ['build']);
 });
 
-gulp.task('default', ['concat-js', 'concat-uglify-js', 'minify-css']);
+gulp.task('default', ['lint', 'concat-js', 'concat-uglify-js', 'minify-css']);
 gulp.task('build', ['default']);

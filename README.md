@@ -6,7 +6,14 @@ This project is a skeleton for an AngularJS module. It can be use as starting po
 
 - [AngularJS](https://angularjs.org/)
 
-### Build
+## Usage
+Install dependencies with: 
+
+`npm install`
+
+Make changes in your source files and build.
+
+## Build
 When there is any change on the sources of this module, you should build the module again to generate dist folder with minified files.
 To build the module just use the following command:
 
